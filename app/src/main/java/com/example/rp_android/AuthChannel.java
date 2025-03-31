@@ -16,8 +16,9 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class AuthChannel {
-    SharedPreferences sharedPreferences;
-
+    /**
+     * Strary kod pro prihlasovani do Pusheru
+     */
     private static final String TAG = "AUTHCANNEL";
     private static final String BASE_URL = ConnectionFile.returnURL()+"chatify/chat/auth";
     private static final String JWT_TOKEN = "YOUR_JWT_TOKEN";

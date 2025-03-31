@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        //setContentView(R.layout.activity_main);
         sharedPreferences = getApplication().getSharedPreferences("com.rp_android.app", MODE_PRIVATE);
 
 
@@ -45,35 +44,16 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
         drawerLayout = findViewById(R.id.drawer_layout);
-        //navigationView = findViewById(R.id.navigation_view);
-       // MenuItem item_main =
-        // Enable the toggle button to open/close the drawer
+
         toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open_drawer, R.string.close_drawer);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        // Enable hamburger icon
-        //Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-        // Handle navigation menu item clicks
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                /*switch (item.getItemId()) {
-                    case R.id.nav_home:
-                        Toast.makeText(MainActivity.this, "Home Clicked", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.nav_profile:
-                        Toast.makeText(MainActivity.this, "Profile Clicked", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.nav_settings:
-                        Toast.makeText(MainActivity.this, "Settings Clicked", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.nav_logout:
-                        Toast.makeText(MainActivity.this, "Logout Clicked", Toast.LENGTH_SHORT).show();
-                        break;
-                }*/
-                // Close the drawer after item is clicked
+
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
@@ -90,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // Close drawer when back button is pressed
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
@@ -98,25 +77,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }*/
-    /*Toolbar toolbar = findViewById(R.id.toolbar);
-    setSupportActionBar(toolbar);*/
-    /*@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            Toast.makeText(this, "Settings Clicked", Toast.LENGTH_SHORT).show();
-            return true;
-        } else if (id == R.id.action_search) {
-            Toast.makeText(this, "Search Clicked", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }*/
 }

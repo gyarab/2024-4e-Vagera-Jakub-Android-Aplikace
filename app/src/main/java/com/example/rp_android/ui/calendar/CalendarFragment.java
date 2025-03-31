@@ -84,7 +84,6 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
     private TextView monthText;
     private TextView yearText;
     private List<CalendarModel> calendarModel;
-    //private HashMap<Integer, String> dateMap = new HashMap<Integer, String>();
     private int userId;
 
     private int lastDay;
@@ -136,7 +135,6 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
         Button nextButton = (Button) binding.nextButton;
         nextButton.setOnClickListener(v -> {
             calendarglobal.set(Calendar.MONTH, calendarglobal.get(Calendar.MONTH) + 1);
-            //currnetLoad(calendarglobal);
             reloadCalendar(calendarglobal, 1);
 
         });
@@ -144,10 +142,8 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
         Button previousButton = (Button) binding.previousButton;
         previousButton.setOnClickListener(v -> {
             calendarglobal.set(Calendar.MONTH, calendarglobal.get(Calendar.MONTH) - 1);
-            //currnetLoad(calendarglobal);
             reloadCalendar(calendarglobal, 1);
 
-            //Log.e("next ", "nnnnn");
 
         });
         spinnerLoader();
@@ -169,7 +165,6 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
             int minute = picker.getMinute();
             String amPm = hour >= 12 ? "PM" : "AM";
 
-            // Convert to 12-hour format
             int formattedHour = (hour == 0 || hour == 12) ? 12 : hour % 12;
 
             String selectedTime = String.format("%02d:%02d %s", formattedHour, minute, amPm);
@@ -206,7 +201,6 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
         yearText.setText(fullYearFormat.format(calendar.getTime()));
         calendarModel = new ArrayList<>();
         lastDay = getLastDayOfMonth(currentYear, currentMonth);
-        //Log.e("qqqq", monthFormat.format(calendar.getTime()));
         List<String> holidayList = HolidayList.DATES;
         int passedId = 0;
         for (int i = 1; i < lastDay + 1; i++) {
@@ -229,7 +223,6 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
 
             try {
                 Date formmater = inputFormat.parse(fullDate); // Convert String to Date
-                //monthNameList.add(dayFormat.format(formmater) + ".");
                 ORGList.add(new CalendarOrganizationModel());
 
                 calendarModel.add(new CalendarModel(i, String.valueOf(currentMonth + 1), dayFormat.format(formmater),  ContextCompat.getDrawable(requireContext(), R.drawable.baseline_remove_red_eye_24),ContextCompat.getDrawable(requireContext(), R.drawable.baseline_inbox_24), ContextCompat.getDrawable(requireContext(), R.drawable.baseline_flag_24),ORGListEmpty));
@@ -239,7 +232,6 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
                 e.printStackTrace();
             }
 
-            //monthNameList.add(dayFormat.format(fullDate));
         }
         adapter = new CalendarAdapter(calendarModel,
                 this,
@@ -247,7 +239,6 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
                 requireContext()
         );
 
-        //loadOptions("2025-03-05");
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         recyclerView.setAdapter(adapter);
         for (int i = 1; i < lastDay + 1; i++) {
@@ -259,18 +250,13 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
             if (currentMonth + 1 < 10) {
                 rawMonth = "0" + String.valueOf(currentMonth + 1);
             }
-            //Log.e("wwwwwwwwwwwwwwwwwwwwwwwwww" ,(rawMonth + "-" + rawDay) );
 
             if(holidayList.contains(rawMonth + "-" + rawDay)){
                 adapter.holidaySet((i-1));
-                //Log.e("hol" ,(rawMonth + "-" + rawDay) );
             }
             String fullDate = currentYear + "-" + rawMonth + "-" + rawDay;
-            //loadOptions((i - 1), fullDate);
             loadWorkday((i - 1), fullDate);
-            //loadORG((i - 1), fullDate);
         }
-        //searchBar.setOnClickListener(v -> searchView.show());
     }
 
     public int getLastDayOfMonth(int year, int monthNumber) {
@@ -309,16 +295,11 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
         picker.addOnPositiveButtonClickListener(dialog -> {
             int hour = picker.getHour();
             int minute = picker.getMinute();
-            //String amPm = hour >= 23 ;
             int formattedHour = (hour == 0 || hour == 12) ? 12 : hour % 12;
             String selectedTime = String.format("%02d:%02d", hour, minute);
-            //String selectedTime = String.format("%02d:%02d %s", formattedHour, minute, amPm);
-            //item.setTime(selectedTime); // Update the correct item in the list
-            //holder.fromTextView.setText(selectedTime);
             adapter.updateFromPicker(position, selectedTime, currentMonth, currentYear, userId);
 
         });
-        //Log.e("position", String.valueOf(position));
     }
 
     @Override
@@ -340,11 +321,8 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
             String selectedTime = String.format("%02d:%02d", hour, minute);
 
             adapter.updateToPicker(position, selectedTime, currentMonth, currentYear, userId);
-            //adapter.saveData(position);
 
-            //notifyItemChanged(position); // Refresh only this item
         });
-        //Log.e("position", String.valueOf(position));
     }
 
     @Override
@@ -355,7 +333,6 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
 
     @Override
     public void copyTime(String from, String to) {
-        //Log.e("dsads", from);
         pasteFrom = from;
         pasteTo = to;
     }
@@ -371,54 +348,6 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
         adapter.allTime(position, currentMonth, currentYear, userId);
     }
 
-    /*private void loadOptions(int position, String date) {
-        Retrofit retrofitSecond = new Retrofit.Builder()
-                .baseUrl(ConnectionFile.returnURL())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        ApiDataService getOptions = retrofitSecond.create(ApiDataService.class);
-        int idUser = sharedPreferences.getInt("id", 0);
-        OptionsPostModel modelOPtions = new OptionsPostModel(idUser, date);
-
-        Call<ResponseBody> callOptions = getOptions.postOptions("Bearer ", modelOPtions);
-        callOptions.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                //Log.e("res", response.toString());
-
-                if (response.isSuccessful()) {
-                    String res = null;
-                    try {
-                        res = response.body().string();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                    //Log.e("body", "-------------");
-                    //Log.e("body--ydob", response.message());
-                    try {
-                        JSONObject jsonObject = new JSONObject(res);
-                        String fromTime = jsonObject.getString("from");
-                        String toTime = jsonObject.getString("to");
-                        adapter.updateAPI(position, fromTime, toTime);
-
-
-                    } catch (JSONException e) {
-                        Log.e("JSON_ERROR", "Invalid JSON format: " + e.getMessage());
-                    }
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable throwable) {
-                adapter.updateAPI(position, "--:--", "--:--");
-
-
-            }
-        });
-
-
-    }*/
     private void loadWorkday(int position, String date) {
         Retrofit retrofitSecond = new Retrofit.Builder()
                 .baseUrl(ConnectionFile.returnURL())
@@ -435,24 +364,7 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
                 Log.e("response", response.toString());
 
                 if (response.isSuccessful()) {
-                    /*String res = null;
-                    try {
-                        res = response.body().string();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                    //Log.e("body", "-------------");
-                    //Log.e("body--ydob", response.message());
-                    try {
-                        JSONObject jsonObject = new JSONObject(res);
-                        String fromTime = jsonObject.getString("from");
-                        String toTime = jsonObject.getString("to");
-                        adapter.updateAPI(position, fromTime, toTime);
 
-
-                    } catch (JSONException e) {
-                        Log.e("JSON_ERROR", "Invalid JSON format: " + e.getMessage());
-                    }*/
                     adapter.workSet(position);
 
                 }
@@ -487,23 +399,19 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
 
                 if (response.isSuccessful() && response.body() != null) {
                     try {
-                        // Convert response body to string
                         String res = response.body().string();
                         Log.d("API_RESPONSE", "Response: " + res);
 
                         // Convert to JSON
                         JSONObject jsonObject = new JSONObject(res);
 
-                        // Check if "data" exists
                         if (jsonObject.has("data")) {
                             Object dataObject = jsonObject.get("data");
 
-                            // Check if data is a JSON Object
                             if (dataObject instanceof JSONObject) {
                                 JSONObject jsonObjectData = (JSONObject) dataObject;
                                 Log.d("JSON", "Data is an object: " + jsonObjectData.toString());
                             }
-                            // Check if data is a JSON Array
                             else if (dataObject instanceof JSONArray) {
                                 JSONArray jsonArrayData = (JSONArray) dataObject;
                                 Log.d("JSON", "Data is an array with " + jsonArrayData.length() + " items");
@@ -525,34 +433,25 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
                                     }else{
                                         draw = ContextCompat.getDrawable(requireContext(), R.drawable.bi_house);
                                     }
-                                    //Drawable draw = ContextCompat.getDrawable(requireContext(), R.drawable.baseline_flag_24);
                                     spinnerModel.add(new SpinnerModel(item.getInt("id"), item.getString("name"), draw));
 
 
 
                                 }
-                                //ArrayAdapter<SpinnerModel> adapterSpinner = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item,  spinnerModel);
-                                //adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-                                // Set adapter to Spinner
 
                                 SpinnerAdapter adapterSpin = new SpinnerAdapter(requireContext(), spinnerModel);
                                 spinner.setAdapter(adapterSpin);
 
-                                //spinner.setAdapter(adapterSpinner);
 
-                                // Handle Spinner item selection
                                 spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                     @Override
                                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                        //String selectedItem = parent.getItemAtPosition(position).toString();
                                         SpinnerModel selectedItem = (SpinnerModel) parent.getItemAtPosition(position);
 
-                                        // Access the ID and Name
                                         int selectedId = selectedItem.getId();
                                         spinnerSideLoader(selectedId);
-                                        Log.e("vvvv", String.valueOf(selectedId));
-                                        //loadOrganization(selectedId);
+
 
                                     }
 
@@ -561,14 +460,8 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
                                         // Do nothing
                                     }
                                 });
-                                // Loop through JSON array
-                                for (int i = 0; i < jsonArrayData.length(); i++) {
 
-                                }
-                                Log.d("JSON", "Lists populated successfully");
                             }
-                        } else {
-                            Log.e("JSON_ERROR", "Missing 'data' field in JSON response");
                         }
 
                     } catch (IOException e) {
@@ -577,7 +470,6 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
                         Log.e("JSON_ERROR", "Invalid JSON format: " + e.getMessage());
                     }
                 } else {
-                    Log.e("API_ERROR", "Request failed: " + response.code() + ", " + response.message());
                 }
             }
 
@@ -608,16 +500,13 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
                         String res = response.body().string();
                         JSONObject jsonObject = new JSONObject(res);
 
-                        // Check if "data" exists
                         if (jsonObject.has("data")) {
                             Object dataObject = jsonObject.get("data");
 
-                            // Check if data is a JSON Object
                             if (dataObject instanceof JSONObject) {
                                 JSONObject jsonObjectData = (JSONObject) dataObject;
                                 Log.d("JSON", "Data is an object: " + jsonObjectData.toString());
                             }
-                            // Check if data is a JSON Array
                             else if (dataObject instanceof JSONArray) {
                                 JSONArray jsonArrayData = (JSONArray) dataObject;
                                 Log.d("JSON", "Data is an array with " + jsonArrayData.length() + " items");
@@ -629,9 +518,7 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
 
                                 for (int i = 0; i < jsonArrayData.length(); i++) {
                                     JSONObject item = jsonArrayData.getJSONObject(i);
-                                    //selectSideName.add(item.getString("name"));
-                                    //spinnerItems.add(item.getString("name"));
-                                    Log.e("jjjj", item.getString("name"));
+
                                     String icon = (item.getString("icon").substring(3)).replaceAll("-", "_");;
                                     int resourceId = getResources().getIdentifier(icon, "drawable", requireContext().getPackageName());
                                     Drawable draw;
@@ -640,26 +527,17 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
                                     }else{
                                         draw = ContextCompat.getDrawable(requireContext(), R.drawable.bi_house);
                                     }
-                                    //Drawable draw = ContextCompat.getDrawable(requireContext(), R.drawable.baseline_flag_24);
                                     spinnerSideModel.add(new SpinnerModel(item.getInt("id"), item.getString("name"), draw));
 
                                 }
-                                //ArrayAdapter<SpinnerModel> adapterSideSpinner = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item,  spinnerSideModel);
-                                //adapterSideSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-                                // Set adapter to Spinner
-                                //spinnerSide.setAdapter(adapterSideSpinner);
                                 SpinnerAdapter adapterSpinSide = new SpinnerAdapter(requireContext(), spinnerSideModel);
                                 spinnerSide.setAdapter(adapterSpinSide);
-                                // Handle Spinner item selection
                                 spinnerSide.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                     @Override
                                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                        //String selectedItem = parent.getItemAtPosition(position).toString();
                                         SpinnerModel selectedItem = (SpinnerModel) parent.getItemAtPosition(position);
-                                        //calendarglobal.set(Calendar.MONTH, calendarglobal.get(Calendar.MONTH));
 
-                                        // Access the ID and Name
                                          selectedSideId = selectedItem.getId();
                                         if(firstLoad > 0 ){
                                             calendarglobal.set(Calendar.MONTH, calendarglobal.get(Calendar.MONTH));
@@ -669,7 +547,6 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
 
                                         List<String> holidayList = HolidayList.DATES;
                                         for (int i = 1; i < lastDay + 1; i++) {
-                                            Log.e("gg", "--u-u-");
                                             List<CalendarOrganizationModel> ORGListEmpty = new ArrayList<>();
                                             adapter.setORGData(position, ORGListEmpty);
 
@@ -683,32 +560,23 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
                                             if (currentMonth + 1 < 10) {
                                                 rawMonth = "0" + String.valueOf(currentMonth + 1);
                                             }
-                                            Log.e("wwwwwwwwwwwwwwwwwwwwwwwwww", (rawMonth + "-" + rawDay));
 
                                             if (holidayList.contains(rawMonth + "-" + rawDay)) {
                                                 adapter.holidaySet((i - 1));
-                                                Log.e("hol", (rawMonth + "-" + rawDay));
                                             }
                                             String fullDate = currentYear + "-" + rawMonth + "-" + rawDay;
                                             loadORG((i-1), fullDate, selectedSideId);
                                         }
-                                        //}
+
 
                                     }
 
                                     @Override
                                     public void onNothingSelected(AdapterView<?> parent) {
-                                        // Do nothing
                                     }
                                 });
-                                // Loop through JSON array
-                                for (int i = 0; i < jsonArrayData.length(); i++) {
 
-                                }
-                                Log.d("JSON", "Lists populated successfully");
                             }
-                        } else {
-                            Log.e("JSON_ERROR", "Missing 'data' field in JSON response");
                         }
 
                     } catch (IOException e) {
@@ -716,8 +584,6 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
                     } catch (JSONException e) {
                         Log.e("JSON_ERROR", "Invalid JSON format: " + e.getMessage());
                     }
-                } else {
-                    Log.e("API_ERROR", "Request failed: " + response.code() + ", " + response.message());
                 }
             }
 
@@ -741,7 +607,6 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 Log.e("response", response.toString());
-                //currnetLoad(calendarglobal);
                 if (response.isSuccessful()) {
                     String res = null;
                     try {
@@ -776,7 +641,6 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
 
                     } catch (JSONException e) {
                         Log.e("JSON_ERROR", "Invalid JSON format: " + e.getMessage());
-                        // Handle invalid JSON
                     }
 
                 }
@@ -785,7 +649,6 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable throwable) {
-                //adapter.updateAPI(position, "--:--", "--:--");
 
 
             }
@@ -813,7 +676,6 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
         yearText.setText(fullYearFormat.format(calendar.getTime()));
         calendarModel = new ArrayList<>();
         lastDay = getLastDayOfMonth(currentYear, currentMonth);
-        //Log.e("qqqq", monthFormat.format(calendar.getTime()));
         List<String> holidayList = HolidayList.DATES;
         for (int i = 1; i < lastDay + 1; i++) {
             dayList.add(i);
@@ -844,7 +706,6 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
                 e.printStackTrace();
             }
 
-            //monthNameList.add(dayFormat.format(fullDate));
         }
         adapter = new CalendarAdapter(calendarModel,
                 this,
@@ -863,11 +724,9 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
             if (currentMonth + 1 < 10) {
                 rawMonth = "0" + String.valueOf(currentMonth + 1);
             }
-            Log.e("vbv" ,(rawMonth + "-" + rawDay) );
 
             if(holidayList.contains(rawMonth + "-" + rawDay)){
                 adapter.holidaySet((i-1));
-                //Log.e("hol" ,(rawMonth + "-" + rawDay) );
             }
             String fullDate = currentYear + "-" + rawMonth + "-" + rawDay;
             loadWorkday((i - 1), fullDate);
@@ -875,7 +734,6 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
                 loadORG((i-1), fullDate, selectedSideId);
             }
         }
-        //private void reloadCalendar(Calendar calendar, int refresh ) {
 
     }
 

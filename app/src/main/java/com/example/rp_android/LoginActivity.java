@@ -105,8 +105,7 @@ public class LoginActivity extends AppCompatActivity {
         ApiLoginService apiLoginService = retrofit.create(ApiLoginService.class);
         User user = new User(email, password);
         Call<ResponseBody> call = apiLoginService.postLogin(user);
-        /*LLOO request = new LLOO(email, password);
-        ApiLoginService apiLoginService = retrofit.getApiService();*/
+
        //Call<ApiResponse> call = apiService.sendData(request);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -165,25 +164,12 @@ public class LoginActivity extends AppCompatActivity {
                                 editor.apply();
                                 startActivity(new Intent(getApplicationContext(), HomePage.class));
                                 finish();
-                                Log.e("JSON_ERROR","---------------------------------" );
 
-                                // Continue processing
-                                Log.e("----",tokenAuth );
 
                             } catch (JSONException e) {
                                 Log.e("JSON_ERROR", "Invalid JSON format: " + e.getMessage());
-                                // Handle invalid JSON
                             }
 
-                        /*JSONObject jsonObjectData = jsonObject.getJSONObject("data");
-                        JSONObject jsonObjectUser = jsonObjectData.getJSONObject("user");
-
-                        String tokenAuth = jsonObjectData.getString("token");
-                        String username = jsonObjectUser.getString("username");
-                        String email = jsonObjectUser.getString("email");
-
-
-                        String status = jsonObject.getString("status");*/
 
 
 

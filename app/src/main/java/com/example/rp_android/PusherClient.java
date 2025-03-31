@@ -19,7 +19,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PusherClient {
-
+    /**
+     * Nepouzivany kod pro prihlasovani do aplikace
+     */
     private static final String PUSHER_KEY = "372c7499d55d1cd7cd8b";
     private static final String PUSHER_CLUSTER = "eu";
     private static final String BASE_URL = ConnectionFile.returnURLRaw();

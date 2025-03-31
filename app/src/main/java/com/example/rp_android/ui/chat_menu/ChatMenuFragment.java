@@ -154,7 +154,6 @@ public class ChatMenuFragment extends Fragment implements ChatFavoriteAdapter.On
                 openNewFragment(sharedPreferences.getInt("id", 0));
         }
         );
-        //chatFavoriteModel.add(new ChatFavoriteModel(0,"1","56"));
 
         ChatGetModel chatGetModel = new ChatGetModel(idUser);
         Call<ResponseBody> callFavorite = apiChatService.chatifyFavorite("Bearer "+sharedPreferences.getString("plainToken", ""), chatGetModel);
@@ -173,33 +172,23 @@ public class ChatMenuFragment extends Fragment implements ChatFavoriteAdapter.On
                         try {
                             JSONObject jsonObject = new JSONObject(res);
                             Object dataObject = jsonObject.get("favorites");
-                            //Log.e("dat", (String) dataObject);
                             if (dataObject instanceof JSONObject) {
                                 JSONObject jsonObjectData = (JSONObject) dataObject;
                                 Log.d("JSON", "Data is an object: " + jsonObjectData.toString());
                             } else if (dataObject instanceof JSONArray) {
                                 JSONArray jsonArrayData = (JSONArray) dataObject;
-                                Log.e("dat", String.valueOf(jsonArrayData));
 
                                 Log.d("JSON", "Data is an array with " + jsonArrayData.length() + " elements. ");
                                 if (jsonArrayData.length() != 0) {
                                     for (int i = 0; i < jsonArrayData.length(); i++) {
                                         JSONObject item = jsonArrayData.getJSONObject(i);
                                         JSONObject userObject = item.getJSONObject("user");
-                                        //if (dataObject instanceof JSONObject) {
                                             Log.e("++", String.valueOf(item.getInt("favorite_id")));
                                             chatFavoriteModel.add(new ChatFavoriteModel(item.getInt("favorite_id"),userObject.getString("first_name") + " " + userObject.getString("middle_name") + " " + userObject.getString("last_name") ,ConnectionFile.returnURLRaw() + item.getString("image")));
-                                        //}
-                                        //chatFavoriteModel.add(new ChatFavoriteModel(item.getInt("favorite_id"),item.getString("first_name") + " " + item.getString("middle_name") + " " + item.getString("last_name") ,item.getString("image")));
 
                                     }
                                 }
-                                /*chatFavoriteModel.add(new ChatFavoriteModel(0,"1","56"));
-                                chatFavoriteModel.add(new ChatFavoriteModel(0,"1","56"));
-                                chatFavoriteModel.add(new ChatFavoriteModel(0,"1","56"));
-                                chatFavoriteModel.add(new ChatFavoriteModel(0,"1","56"));
-                                chatFavoriteModel.add(new ChatFavoriteModel(0,"1","56"));
-                                chatFavoriteModel.add(new ChatFavoriteModel(0,"1","56"));*/
+
                                 adapter = new ChatFavoriteAdapter(chatFavoriteModel,
                                         ChatMenuFragment.this,
                                         getParentFragmentManager(),
@@ -211,9 +200,7 @@ public class ChatMenuFragment extends Fragment implements ChatFavoriteAdapter.On
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
                         }
-                        //Log.e("position", String.valueOf(position));
-                    //adapterOffer.changeWaiting(position);
-                    //adapter.changeWaiting(position, dataList, parent);
+
                 }
             }
 
@@ -237,28 +224,23 @@ public class ChatMenuFragment extends Fragment implements ChatFavoriteAdapter.On
                     try {
                         JSONObject jsonObject = new JSONObject(res);
                         Object dataObject = jsonObject.get("data");
-                        //Log.e("dat", (String) dataObject);
                         if (dataObject instanceof JSONObject) {
                             JSONObject jsonObjectData = (JSONObject) dataObject;
                             Log.d("JSON", "Data is an object: " + jsonObjectData.toString());
                         } else if (dataObject instanceof JSONArray) {
                             JSONArray jsonArrayData = (JSONArray) dataObject;
-                            Log.e("dat", String.valueOf(jsonArrayData));
                             if (jsonArrayData.length() != 0) {
                                 for (int i = jsonArrayData.length()-1; i > -1 ; i--) {
                                     JSONObject item = jsonArrayData.getJSONObject(i);
                                     JSONArray userArray = item.getJSONArray("innerdata");
                                     if (userArray.length() != 0) {
-                                        //JSONObject user = userArray.getJSONObject(0);
 
                                         for (int x = 0; x < userArray.length(); x++) {
                                             JSONObject user = userArray.getJSONObject(x);
                                             String dateTimeString = user.getString("created_at");
                                             long timestamp = (System.currentTimeMillis()-convertStringToTimestamp(dateTimeString))/1000;
 
-                                            if (timestamp != -1) {
-                                                Log.e( "iiiii", convertSeconds(timestamp));
-                                            }
+
                                             String who = "You";
                                             if(item.getInt("who") == 0){
                                                 who ="You : ";
@@ -269,25 +251,17 @@ public class ChatMenuFragment extends Fragment implements ChatFavoriteAdapter.On
                                             if(item.getInt("count") > 0){
                                                 visibility = View.VISIBLE;
                                             }
-                                            //Log.e("counter" , String.valueOf(item.getInt("count")));
 
                                             chatConntactmodel.add(new ContactModel(user.getInt("id_user"),who,ConnectionFile.returnURLRaw()+ item.getString("image"),
                                                     user.getString("first_name") + " " + user.getString("middle_name") + " " + user.getString("last_name"),
                                                     convertSeconds(timestamp),user.getString("body"),item.getInt("count") ,visibility ));
 
                                         }
-                                        //chatConntactmodel.add(new ContactModel(user.getInt("id_user"),"You","ds", "ds", "ds", "Ds"));
 
                                     }
-                                    //if (dataObject instanceof JSONObject) {
-                                    //Log.e("++", String.valueOf(item.getInt("favorite_id")));
-                                    //chatFavoriteModel.add(new ChatFavoriteModel(item.getInt("favorite_id"),userObject.getString("first_name") + " " + userObject.getString("middle_name") + " " + userObject.getString("last_name") ,ConnectionFile.returnURLRaw() + item.getString("image")));
-                                    //}
-                                    //chatFavoriteModel.add(new ChatFavoriteModel(item.getInt("favorite_id"),item.getString("first_name") + " " + item.getString("middle_name") + " " + item.getString("last_name") ,item.getString("image")));
 
                                 }
                             }
-                            //chatConntactmodel.add(new ContactModel(0,"456","ds", "ds", "ds", "Ds"));
                             adapterContact = new ChatContactAdapter(chatConntactmodel,
                                     ChatMenuFragment.this,
                                     getParentFragmentManager(),
@@ -320,8 +294,6 @@ public class ChatMenuFragment extends Fragment implements ChatFavoriteAdapter.On
                                 binding.buttonAdmin.setIconResource(R.drawable.baseline_done_24);
                                 binding.buttonAdmin.setPadding(30,0,10,0);
                                 intAdmin = 1;
-                                //binding.buttonAdmin.setCompoundDrawablePadding(0);
-                                //binding.buttonAdmin.icon
                             } else if (checkedId == binding.buttonManger.getId()) {
                                 binding.buttonManger.setIconResource(R.drawable.baseline_done_24);
                                 binding.buttonManger.setPadding(30,0,40,0);
@@ -360,16 +332,13 @@ public class ChatMenuFragment extends Fragment implements ChatFavoriteAdapter.On
                             } else if (checkedId == binding.buttonAdmin.getId()) {
                                 intAdmin = 0;
 
-                                //binding.buttonPart.setPadding(60,0,60,0);
-
                             }
                             searchEmployee();
                             button.setIcon(null);
                         }
                     }
                 });
-        //final TextView textView = binding.textGallery;
-        //galleryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
         return root;
     }
 
@@ -437,7 +406,6 @@ public class ChatMenuFragment extends Fragment implements ChatFavoriteAdapter.On
                 localDateTime = LocalDateTime.parse(dateTimeString, formatter);
             }
 
-            // Convert LocalDateTime to timestamp (milliseconds since epoch)
             long timestamp = 0;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 timestamp = localDateTime.toInstant(ZoneOffset.UTC).toEpochMilli();
@@ -455,7 +423,6 @@ public class ChatMenuFragment extends Fragment implements ChatFavoriteAdapter.On
         NavController navController = Navigation.findNavController(requireView());
         Bundle bundle = new Bundle();
         bundle.putInt("employee_id", employeeId);
-        //Log.e("5555", employeeId);// Passing Integer
         navController.navigate(R.id.nav_chat_detail, bundle);
 
     }
@@ -477,7 +444,6 @@ public class ChatMenuFragment extends Fragment implements ChatFavoriteAdapter.On
                         throw new RuntimeException(e);
                     }
 
-                    Log.e("body", response.message());
                     try {
                         JSONObject jsonObject = new JSONObject(res);
                         Object dataObject = jsonObject.get("data");
@@ -502,7 +468,6 @@ public class ChatMenuFragment extends Fragment implements ChatFavoriteAdapter.On
                                 dataList.add(item.getString("firstname") + " " + item.getString("middlename") +  item.getString("lastname"));
                                 emailList.add(item.getString("email"));
                                 idList.add(item.getString("id"));
-                                //positionList.add(item.getString("position"));
                                 if(item.getString("position").equals("manager")){
                                     positionList.add("M");
                                     colorList.add("#dc3545");
@@ -525,14 +490,12 @@ public class ChatMenuFragment extends Fragment implements ChatFavoriteAdapter.On
                             adapterSearch = new SearchEmployeeAdapter(dataList, emailList, imgURLList, idList, positionList, colorList,  this::openNewFragment);
                             recycleViewEmployees.setAdapter(adapterSearch);
                             searchBar.setOnClickListener(v -> searchView.show());
-                            //adapter.filter(query.toString());
 
                         }
 
 
                     } catch (JSONException e) {
                         Log.e("JSON_ERROR", "Invalid JSON format: " + e.getMessage());
-                        // Handle invalid JSON
                     }
                 } else {
                     Toast.makeText(requireContext(), "Error in success response", Toast.LENGTH_SHORT).show();
@@ -541,28 +504,16 @@ public class ChatMenuFragment extends Fragment implements ChatFavoriteAdapter.On
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable throwable) {
-                Log.e("failled","---");
                 Toast.makeText(requireContext(), "Error: " + throwable.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
             private void openNewFragment(String employeeId) {
                 Fragment newFragment = new EmployeeDetailFragment(); // Your target fragment
-                /*NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_employee_detail);
-                navController.navigate(R.id.fragment_employee_detail);*/
+
                 NavController navController = Navigation.findNavController(requireView());
                 Bundle bundle = new Bundle();
                 bundle.putInt("employee_id", Integer.parseInt(employeeId));
-                Log.e("5555", employeeId);// Passing Integer
                 navController.navigate(R.id.nav_chat_detail, bundle);
-                /*Bundle bundle = new Bundle();
-                bundle.putString("item_key", item); // Pass data to new fragment
-                newFragment.setArguments(bundle);*/
 
-                // Replace fragment
-                /*getParentFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.nav_employee_detail, newFragment)
-                        .addToBackStack(null)
-                        .commit();*/
             }
         });
     }
