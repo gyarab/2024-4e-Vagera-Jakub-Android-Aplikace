@@ -1,0 +1,3 @@
+[submodule "external/android-app"]
+	path = external/android-app
+	url = https://github.com/gyarab/2024-4e-Vagera-Jakub-Planovani_smen.git
