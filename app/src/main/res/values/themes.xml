@@ -1,0 +1,38 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.RP_Android" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/primaryOrganizationColor</item>
+        <item name="colorPrimaryVariant">@color/primaryOrganizationColor</item>
+        <item name="colorPrimaryDark">@color/primaryOrganizationColor</item>
+        <item name="android:statusBarColor">@color/primaryOrganizationColor</item>
+
+    </style>
+
+    <style name="Theme.RP_Android" parent="Base.Theme.RP_Android" />
+
+    <style name="Theme.RP_Android.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.RP_Android.nav" parent="Theme.MaterialComponents.Light.DarkActionBar">
+
+        <!--<item name="colorPrimary">@color/primaryOrganizationColor</item>
+        <item name="colorPrimaryVariant">@color/primaryOrganizationColor</item>
+        <item name="android:statusBarColor">@color/primaryOrganizationColor</item>-->
+    </style>
+    <style name="Theme.RP_Android.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+    <!--<item name="colorPrimary">@color/primaryOrganizationColor</item>
+    <item name="colorPrimaryVariant">@color/primaryOrganizationColor</item>
+    <item name="colorPrimaryDark">@color/primaryOrganizationColor</item>-->
+    </style>
+
+    <style name="Theme.RP_Android.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="SmallButtonStyle" parent="Widget.Material3.Button">
+        <item name="android:minWidth">50dp</item>
+        <item name="android:minHeight">28dp</item>
+        <item name="android:textSize">10sp</item>
+        <item name="iconSize">15dp</item>
+    </style>
+</resources>

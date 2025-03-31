@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/contactLinearLayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:paddingBottom="8dp"
+
+    android:gravity="center_vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_height="50dp"
+        android:layout_width="50dp"
+        app:cardCornerRadius="25dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+
+        >
+        <ImageView
+            android:id="@+id/contactImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:contentDescription="@string/nav_header_desc"
+            android:shape="ring"
+            android:scaleType="centerCrop"
+            />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:contentDescription="@string/nav_header_desc"
+            android:shape="ring"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingStart="5dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/nameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jakub2"
+            android:textSize="16sp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@android:color/black" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:id="@+id/whoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You :"
+                android:textSize="14sp"
+                android:textColor="@android:color/holo_blue_dark" />
+            <TextView
+                android:id="@+id/messageTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="123"
+                android:textSize="14sp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@android:color/darker_gray" />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/timestampText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5w ago"
+            android:textSize="12sp"
+            android:paddingEnd="4dp"
+            android:textColor="@android:color/darker_gray" />
+        <com.google.android.material.button.MaterialButton
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/counterIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/primary"
+            android:text="0"
+            android:visibility="gone"
+            android:layout_marginTop="2dp"
+            android:layout_gravity="center"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingStart="7dp"
+            android:paddingEnd="7dp"
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:insetLeft="0dp"
+            android:insetRight="0dp"
+            android:layout_marginEnd="0dp"
+            />
+        <!--<TextView
+            android:id="@+id/counterText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5w ago"
+            android:textSize="12sp"
+            android:paddingEnd="4dp"
+            android:layout_gravity="bottom"
+            android:textColor="@android:color/darker_gray" />-->
+    </LinearLayout>
+
+
+</LinearLayout>

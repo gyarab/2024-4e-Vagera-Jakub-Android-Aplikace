@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp"
+
+
+    android:gravity="center">
+
+    <!-- Red Error Icon -->
+    <ImageView
+        android:id="@+id/imageDialog"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        />
+
+    <!-- Main Title -->
+    <TextView
+        android:id="@+id/dialogTextHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your arrival has not been confirmed"
+        android:textStyle="bold"
+        android:textColor="#4D4D4D"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_marginTop="16dp" />
+
+    <!-- Sub Title -->
+    <TextView
+        android:id="@+id/dialogText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please enter comment why are you late"
+        android:textColor="#7D7D7D"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:layout_marginTop="8dp" />
+
+    <!-- Close Button -->
+    <Button
+        android:id="@+id/buttonClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Close"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#7A5CFF"
+        android:textColor="#FFFFFF"
+        android:padding="12dp"
+        android:layout_marginBottom="8dp"
+         />
+</LinearLayout>

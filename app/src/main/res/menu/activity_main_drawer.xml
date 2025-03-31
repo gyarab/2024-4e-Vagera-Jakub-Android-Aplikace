@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/baseline_dashboard_24"
+            android:title="@string/menu_home" />
+        <!--<item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/menu_gallery" />-->
+        <!--<item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_slideshow" />-->
+        <item
+            android:id="@+id/nav_employees"
+            android:icon="@drawable/baseline_account_circle_24"
+            android:title="Employees" />
+        <!--<item
+            android:id="@+id/nav_statistics"
+            android:icon="@drawable/baseline_account_circle_24"
+            android:title="Statistics" />-->
+        <item
+            android:id="@+id/nav_options"
+            android:icon="@drawable/baseline_add_circle_outline_24"
+            android:title="Options"
+            android:visible="false"/>
+        <item
+            android:id="@+id/nav_calendar"
+            android:icon="@drawable/baseline_calendar_month_24"
+            android:title="Calendar" />
+        <item
+            android:id="@+id/nav_offers"
+            android:icon="@drawable/baseline_tag_24"
+            android:title="Offers"
+           />
+        <item
+            android:id="@+id/nav_chat_menu"
+            android:icon="@drawable/baseline_chat_24"
+            android:title="Chat" />
+        <item
+            android:id="@+id/nav_my_shifts"
+            android:icon="@drawable/baseline_perm_contact_calendar_24"
+            android:title="My shifts" />
+        <item
+            android:id="@+id/nav_personal_stats"
+            android:icon="@drawable/bi_bar_chart"
+            android:title="Statistics " />
+    </group>
+</menu>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.employees.EmployeesFragment">
+
+    <LinearLayout
+        android:id="@+id/main"
+        android:orientation="vertical"
+        android:padding="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <!--https://github.com/amitthecoder/log-in -->
+
+        <!--<androidx.cardview.widget.CardView
+            android:id="@+id/organizationPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp"
+            app:cardUseCompatPadding="true">-->
+
+            <!-- Card content -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:cardCornerRadius="10dp"
+                android:padding="0dp">
+
+                <!--<SearchView
+                    android:id="@+id/searchviewEmployee"
+                    android:layout_width="match_parent"
+                    android:layout_height="47dp"
+                    app:queryHint="Search Employee"
+                    android:background="@drawable/bg_white_rounded"
+                    android:iconifiedByDefault="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />-->
+
+                <!-- List View from which data is to be searched -->
+                <androidx.coordinatorlayout.widget.CoordinatorLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_height="match_parent">
+
+                    <!-- NestedScrollingChild goes here (NestedScrollView, RecyclerView, etc.). -->
+                    <androidx.core.widget.NestedScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        app:layout_behavior="@string/searchbar_scrolling_view_behavior">
+                        <!-- Screen content goes here. -->
+                    </androidx.core.widget.NestedScrollView>
+
+                    <com.google.android.material.appbar.AppBarLayout
+                        android:layout_width="match_parent"
+                        android:background="@color/white"
+                        android:layout_height="wrap_content">
+                        <com.google.android.material.search.SearchBar
+                            android:id="@+id/search_bar"
+                            android:background="@color/white"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/searchbar_hint" />
+
+                    </com.google.android.material.appbar.AppBarLayout>
+
+                    <com.google.android.material.search.SearchView
+                        android:id="@+id/searchView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="@string/searchbar_hint"
+                        app:layout_anchor="@id/search_bar"
+
+                        >
+                        <!--<LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="0dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/checkbox1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Administrator"
+                                app:useMaterialThemeColors="true"/>
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/checkbox2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Management"
+                                app:useMaterialThemeColors="true"/>
+
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/checkbox3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Full-time"
+                                app:useMaterialThemeColors="true"/>
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/checkbox4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Part-time"
+                                app:useMaterialThemeColors="true"/>
+                        </LinearLayout>
+                        </LinearLayout>-->
+                        <com.google.android.material.button.MaterialButtonToggleGroup
+                            android:id="@+id/toggleButtonGroup"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            >
+                            <com.google.android.material.button.MaterialButton
+                                style="?attr/materialButtonOutlinedStyle"
+                                android:id="@+id/buttonAdmin"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Admin"
+                                />
+                            <com.google.android.material.button.MaterialButton
+                                style="?attr/materialButtonOutlinedStyle"
+                                android:id="@+id/buttonManger"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Manager"
+                                />
+                            <com.google.android.material.button.MaterialButton
+                                style="?attr/materialButtonOutlinedStyle"
+                                android:id="@+id/buttonFull"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Full-time"
+                                />
+                            <com.google.android.material.button.MaterialButton
+                                style="?attr/materialButtonOutlinedStyle"
+                                android:id="@+id/buttonPart"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Part-time"
+                                />
+
+
+                        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                        <!-- Search suggestions/results go here (ScrollView, RecyclerView, etc.). -->
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recycleViewEmployees"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="0dp"
+                            android:layout_marginTop="50dp"
+                            android:background="@color/white"/>
+                    </com.google.android.material.search.SearchView>
+                </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+                    <!-- Search suggestions/results go here (ScrollView, RecyclerView, etc.). -->
+
+            </LinearLayout>
+
+
+        <!--ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_below="@id/searchview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchview" />-->
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

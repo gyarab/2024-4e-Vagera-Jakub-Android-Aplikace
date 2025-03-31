@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.rp_android.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="com.example.rp_android.ui.gallery.GalleryFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_gallery" />
+
+    <fragment
+        android:id="@+id/nav_slideshow"
+        android:name="com.example.rp_android.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/nav_statistics"
+        android:name="com.example.rp_android.ui.statistics.StatisticsFragment"
+        android:label="Statistics"
+        tools:layout="@layout/fragment_statistics" />
+    <fragment
+        android:id="@+id/nav_employees"
+        android:name="com.example.rp_android.ui.employees.EmployeesFragment"
+        android:label="Employees"
+        tools:layout="@layout/fragment_employees" />
+    <fragment
+        android:id="@+id/nav_employee_detail"
+        android:name="com.example.rp_android.ui.employee_detail.EmployeeDetailFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_employee_detail" />
+    <fragment
+        android:id="@+id/nav_options"
+        android:name="com.example.rp_android.ui.options.OptionsFragment"
+        android:label="Time options"
+        tools:layout="@layout/fragment_options" />
+    <fragment
+        android:id="@+id/nav_calendar"
+        android:name="com.example.rp_android.ui.calendar.CalendarFragment"
+        android:label="Calendar"
+        tools:layout="@layout/fragment_calendar" />
+    <fragment
+        android:id="@+id/nav_offers"
+        android:name="com.example.rp_android.ui.offers.OffersFragment"
+        android:label="Offers"
+        tools:layout="@layout/fragment_offers" />
+    <fragment
+        android:id="@+id/nav_chat_menu"
+        android:name="com.example.rp_android.ui.chat_menu.ChatMenuFragment"
+        android:label="Chat"
+        android:layout="@layout/fragment_chat_menu" />
+    <fragment
+        android:id="@+id/nav_chat_detail"
+        android:name="com.example.rp_android.ui.chat_detail.ChatDetailFragment"
+        android:label="Conversation"
+        tools:layout="@layout/fragment_chat_detail" />
+    <fragment
+        android:id="@+id/nav_my_shifts"
+        android:name="com.example.rp_android.ui.my_shifts.MyShiftsFragment"
+        android:label="My shifts"
+        tools:layout="@layout/fragment_my_shifts" />
+    <fragment
+        android:id="@+id/nav_personal_stats"
+        android:name="com.example.rp_android.ui.personal_stats.PersonalStats"
+        android:label="My statistics"
+        tools:layout="@layout/fragment_personal_stats" />
+
+
+</navigation>

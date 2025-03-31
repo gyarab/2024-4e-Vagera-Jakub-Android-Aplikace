@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/empty_calendar_frame"
+    >
+
+    <!-- Left Color Bar -->
+    <View
+        android:id="@+id/sideImageView"
+        android:layout_width="8dp"
+        android:layout_height="match_parent"
+        android:background="@color/danger"/>
+
+    <!-- Main Content Layout -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingTop="8dp"
+        android:paddingStart="8dp">
+
+        <!-- Title Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- Title Text -->
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Object - shift"
+                android:textColor="@color/black"
+                android:textSize="14sp"/>
+
+            <!-- Info Icon -->
+
+        </LinearLayout>
+
+        <!-- Time Slot -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:tooltipText="This is a tooltip"
+            android:layout_marginBottom="5dp">
+
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00 - 00:00"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:paddingTop="4dp"/>
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+            <ImageView
+                android:id="@+id/infoIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_info_details"
+                android:layout_marginEnd="8dp"/>
+
+        </LinearLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingEnd="8dp">
+            <ImageView
+                android:id="@+id/commentIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/baseline_chat_bubble_24"
+                android:layout_marginEnd="8dp"/>
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+            <com.google.android.material.button.MaterialButton
+
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/statusButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/SmallButtonStyle"
+                android:backgroundTint="@color/primary"
+                android:text="Request"
+                android:textSize="12dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:insetLeft="0dp"
+                android:insetRight="0dp"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Chat Icon -->
+
+
+    <!-- Request Button (Material 3) -->
+
+
+</LinearLayout>

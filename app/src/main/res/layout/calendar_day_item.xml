@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:background="@android:color/white">
+
+    <!-- Left Side Panel -->
+    <LinearLayout
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:gravity="center_horizontal"
+        android:background="@drawable/empty_calendar_frame">
+
+        <!-- Date -->
+        <TextView
+            android:id="@+id/optionsDateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1.3."
+            android:textSize="14sp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"/>
+
+        <!-- Month -->
+        <TextView
+            android:id="@+id/optionsMonthText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jan."
+            android:textSize="14sp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@android:color/black"/>
+
+
+        <!-- Divider -->
+        <View
+            android:layout_width="40dp"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Icons (Eye Glasses, Suitcase, Flag) -->
+        <ImageView
+            android:id="@+id/vacationImageView"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/baseline_remove_red_eye_24"
+
+            android:layout_marginBottom="8dp"/>
+
+        <ImageView
+            android:id="@+id/workImageView"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/baseline_inbox_24"
+
+            android:layout_marginBottom="8dp"/>
+
+        <ImageView
+            android:id="@+id/holidayImageView"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/baseline_flag_24"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/empty_calendar_frame"
+        >
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/childListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="6dp"
+
+            >
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
