@@ -34,6 +34,9 @@ public class PusherClient {
         initPusher();
     }
 
+    /**
+     * Tato cast byla castecne vygenerovana ChatGPT model 4.0
+     */
     private void initPusher() {
         HttpAuthorizer authorizer = new HttpAuthorizer(ConnectionFile.returnURL()+"api/chatt");
         PusherOptions options = new PusherOptions();

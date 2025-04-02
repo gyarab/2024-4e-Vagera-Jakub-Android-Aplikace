@@ -27,7 +27,9 @@ public class SendMessage {
     private static final String JWT_TOKEN = "YOUR_JWT_TOKEN";
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private OkHttpClient client = new OkHttpClient();
-
+    /**
+     * Tato cast byla castecne vygenerovana ChatGPT model 4.0
+     */
     public void sendMessage(String message, int receiverId, int sender, String token) {
         Log.e("token", BASE_URL);
         String json = "{"

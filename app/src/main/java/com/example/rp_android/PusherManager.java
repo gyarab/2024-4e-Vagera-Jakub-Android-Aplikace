@@ -21,7 +21,9 @@ import java.util.Map;
 public class PusherManager {
 
     private Pusher pusher;
-
+    /**
+     * Tato cast byla castecne vygenerovana ChatGPT model 4.0
+     */
     public PusherManager(String token) {
         PusherOptions options = new PusherOptions();
         options.setCluster(PusherConnectionFile.returnCluster()); // Example: eu, mt1
