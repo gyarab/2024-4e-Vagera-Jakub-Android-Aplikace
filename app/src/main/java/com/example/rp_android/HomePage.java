@@ -346,10 +346,7 @@ public class HomePage extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
 
-        if (itemId == R.id.action_profile) {
-            Toast.makeText(this, "Profile clicked", Toast.LENGTH_SHORT).show();
-            return true;
-        } else if (itemId == R.id.action_settings) {
+      if (itemId == R.id.action_settings) {
             Toast.makeText(this, "Logging out...", Toast.LENGTH_SHORT).show();
             clearSharedPreferences(); // Call log out method
             return true;

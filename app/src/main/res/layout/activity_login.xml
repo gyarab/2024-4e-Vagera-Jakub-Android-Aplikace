@@ -54,30 +54,6 @@
         android:clickable="true"
         android:layout_marginTop="30dp"
         android:focusable="true" />
-    <!--<EditText
-        android:id="@+id/editTextEmail"
-        android:layout_width="match_parent"
-        android:layout_height="77dp"
-        android:hint="enterEmail" />
 
-    <EditText
-        android:id="@+id/editTextPassword"
-        android:layout_width="match_parent"
-        android:layout_height="77dp"
-        android:hint="enterPassword" />
-
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="222dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Login" />-->
-
-    <!--<TextView
-        android:layout_marginTop="10dp"
-        android:text="Register now"
-        android:id="@+id/textReg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />-->
 <!--source: https://www.youtube.com/watch?v=mQltPFDJaEg -->
 </LinearLayout>

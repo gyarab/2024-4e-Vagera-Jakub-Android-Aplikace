@@ -51,12 +51,10 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
                 loginUser();
 
             }
-            // Toast.makeText(getApplicationContext(), "Press", Toast.LENGTH_SHORT).show();
-            //loginUser();
+
         });
 
         if(sharedPreferences.getString("loginStatus", "false").equals("true")){
@@ -64,14 +62,7 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
 
-        TextView textView = findViewById(R.id.textReg);
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
-                finish();
-            }
-        });
+
 
     }
 
